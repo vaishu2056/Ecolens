@@ -8,7 +8,7 @@ import cv2
 @st.cache_resource
 def load_model():
     try:
-        model = tf.keras.models.load_model("models/segmentation_model.h5")  # Make sure this path exists!
+        model = tf.keras.models.load_model("segmentation_model.h5")  # Make sure this path exists!
         return model
     except Exception as e:
         st.error(f"Model loading failed: {e}")
