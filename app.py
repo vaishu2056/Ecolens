@@ -4,14 +4,20 @@ from PIL import Image
 import tensorflow as tf
 import cv2
 
-# Load model once
+# Load model safely
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model("models/segmentation_model.h5")  # Replace with your model path
-    return model
+    try:
+        model = tf.keras.models.load_model("models/segmentation_model.h5")  # Make sure this path exists!
+        return model
+    except Exception as e:
+        st.error(f"Model loading failed: {e}")
+        return None
 
 model = load_model()
 
+if model is None:
+    st.stop()  # Don't proceed if model fails to load
 # Constants
 IMAGE_SIZE = 256
 NUM_CLASSES = 5  # Update based on your model
