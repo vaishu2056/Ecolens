@@ -1,9 +1,5 @@
 streamlit
-
-tensorflow
-
+tensorflow-cpu
 numpy
-
 pillow
-
 OpenCV-python-headless
